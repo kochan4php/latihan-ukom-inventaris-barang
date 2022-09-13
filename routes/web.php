@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TabungController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/supplier', SupplierController::class);
+Route::controller(TabungController::class)->group(function () {
+    Route::get('/tabung', 'form')->name('tabung.form');
+    Route::post('/tabung', 'process')->name('tabung.process');
+});
