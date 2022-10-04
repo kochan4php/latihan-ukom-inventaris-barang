@@ -16,17 +16,20 @@ return new class extends Migration
         Schema::create('pinjam_barang', function (Blueprint $table) {
             $table->id('id_barang');
 
+            $table->char('peminjam', 8);
             $table
-                ->foreignId('peminjam')
-                ->index()
-                ->constrained('user', 'id_user')
+                ->foreign('peminjam')
+                ->references('id_user')
+                ->on('user')
                 ->cascadeOnDelete();
 
             $table->date('tgl_pinjam');
+
+            $table->char('barang_pinjam', 8);
             $table
-                ->foreignId('barang_pinjam')
-                ->index()
-                ->constrained('barang', 'id_barang')
+                ->foreign('barang_pinjam')
+                ->references('id_barang')
+                ->on('barang')
                 ->cascadeOnDelete();
 
             $table->integer('jml_pinjam');

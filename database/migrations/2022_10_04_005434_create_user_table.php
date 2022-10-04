@@ -14,16 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user', function (Blueprint $table) {
-            $table->id('id_user');
+            $table->char('id_user', 8)->primary();
             $table->string('nama');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
 
+            $table->char('level', 3);
             $table
-                ->foreignId('level')
-                ->index()
-                ->constrained('level_user', 'id_level')
+                ->foreign('level')
+                ->references('id_level')
+                ->on('level_user')
                 ->cascadeOnDelete();
         });
     }

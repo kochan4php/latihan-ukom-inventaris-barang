@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stok', function (Blueprint $table) {
+            $table->char('id_barang', 8);
             $table
-                ->foreignId('id_barang')
-                ->index()
-                ->constrained('barang', 'id_barang')
+                ->foreign('id_barang')
+                ->references('id_barang')
+                ->on('barang')
                 ->cascadeOnDelete();
 
             $table->integer('jml_masuk');

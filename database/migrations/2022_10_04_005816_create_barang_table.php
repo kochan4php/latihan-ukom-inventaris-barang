@@ -14,23 +14,25 @@ return new class extends Migration
     public function up()
     {
         Schema::create('barang', function (Blueprint $table) {
-            $table->id('id_barang');
+            $table->char('id_barang', 8)->primary();
             $table->string('nama_barang');
             $table->text('spesifikasi');
 
+            $table->char('lokasi', 4);
             $table
-                ->foreignId('lokasi')
-                ->index()
-                ->constrained('lokasi', 'id_lokasi')
+                ->foreign('lokasi')
+                ->references('id_lokasi')
+                ->on('lokasi')
                 ->cascadeOnDelete();
 
             $table->string('kondisi', 20);
             $table->integer('jumlah_barang');
 
+            $table->char('sumber_dana', 4);
             $table
-                ->foreignId('sumber_dana')
-                ->index()
-                ->constrained('sumber_dana', 'id_sumber')
+                ->foreign('sumber_dana')
+                ->references('id_sumber')
+                ->on('sumber_dana')
                 ->cascadeOnDelete();
         });
     }

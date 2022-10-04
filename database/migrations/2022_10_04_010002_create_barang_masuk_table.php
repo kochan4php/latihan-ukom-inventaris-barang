@@ -14,19 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('barang_masuk', function (Blueprint $table) {
+            $table->char('id_barang', 8);
             $table
-                ->foreignId('id_barang')
-                ->index()
-                ->constrained('barang', 'id_barang')
+                ->foreign('id_barang')
+                ->references('id_barang')
+                ->on('barang')
                 ->cascadeOnDelete();
 
             $table->date('tgl_masuk');
             $table->integer('jml_masuk');
 
+            $table->char('supplier', 8);
             $table
-                ->foreignId('supplier')
-                ->index()
-                ->constrained('supplier', 'id_supplier')
+                ->foreign('supplier')
+                ->references('id_supplier')
+                ->on('supplier')
                 ->cascadeOnDelete();
         });
     }
