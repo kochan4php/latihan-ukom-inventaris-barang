@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('level_user', function (Blueprint $table) {
-            $table->string('id_level', 3)->primary();
-            $table->string('nama', 255);
-            $table->text('keterangan');
-            $table->timestamps();
+        Schema::create('supplier', function (Blueprint $table) {
+            $table->id('id_supplier');
+            $table->string('nama_supplier');
+            $table->text('alamat_supplier');
+            $table->string('telp_supplier', 14);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('level_user');
+        Schema::dropIfExists('supplier');
     }
 };
