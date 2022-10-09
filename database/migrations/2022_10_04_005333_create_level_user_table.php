@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('level_user', function (Blueprint $table) {
             $table->char('id_level', 3)->primary();
             $table->string('nama');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
         });
     }
 

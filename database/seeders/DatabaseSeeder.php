@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Supplier;
+use App\Models\Barang;
+use App\Models\BarangMasuk;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,13 +17,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        Supplier::factory()->count(100)->create();
+        $this->call([
+            LevelUserSeeder::class,
+            SumberDanaSeeder::class,
+            LokasiSeeder::class,
+            UserSeeder::class,
+            BarangSeeder::class,
+            SupplierSeeder::class,
+            PinjamBarangSeeder::class,
+            BarangMasukSeeder::class,
+            BarangKeluarSeeder::class,
+            StokSeeder::class
+        ]);
     }
 }
